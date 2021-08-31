@@ -12,7 +12,7 @@ const bot = new Telegram(process.env.TELEGRAM_API_KEY)
 async function callApi () {
   const res = await axios.get(endpoint);
 
-  const product = (res.data as EquipmentsStore).Data.Products.filter( p => (p.Title.includes('10T') && p.Title.includes('Lite')));
+  const product = (res.data as EquipmentsStore).Data.Products.filter( p => (p.Title.includes('10T') && !p.Title.includes('Lite')));
   product.length > 0 ? bot.sendMessage(process.env.TELEGRAM_USER_ID,"Xiaomi MI 10T já está disponível.") : console.log("Ainda não há nada...");
 }
 
